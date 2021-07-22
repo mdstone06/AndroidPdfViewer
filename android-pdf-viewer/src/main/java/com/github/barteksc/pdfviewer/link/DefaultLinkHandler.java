@@ -48,9 +48,9 @@ public class DefaultLinkHandler implements LinkHandler {
         Uri parsedUri = Uri.parse(uri);
         Intent intent = new Intent(Intent.ACTION_VIEW, parsedUri);
         Context context = pdfView.getContext();
-        if (intent.resolveActivity(context.getPackageManager()) != null) {
+        try {
             context.startActivity(intent);
-        } else {
+        } catch (Exception e) {
             Log.w(TAG, "No activity found for URI: " + uri);
         }
     }
